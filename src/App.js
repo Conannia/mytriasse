@@ -1,16 +1,55 @@
 import React from 'react';
-//import components
+import { Switch, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-import NavigationBar from './component/navigationBar';
+// import pages
+import HomePage from './pages/home';
+import LoginPage from './pages/login';
+import RegisPage from './pages/register';
+import LabPage from './pages/labinfo';
+
+
+
+//import actions
+import { keepLogin } from './redux/actions'
 
 class App extends React.Component {
+  componentDidMount(){
+    let id = localStorage.getItem('idUser')
+    this.props.keepLogin(id)
+  }
+
   render() {
+    console.log(this.props.role)
+    if(this.props.role === "admin") {
+      return(
+        <div style={{backgroundColor: '#FFCDDD'}}>
+          <Switch>
+            <Route path="/" component={HomePage} exact/>
+            <Route path="/login" component={LoginPage} />
+            <Route path="/register" component={RegisPage} />
+            <Route path="/labinfo" component={LabPage} />
+          </Switch>
+        </div>
+      )
+    } 
     return (
-      <div>
-        <h1>Hello World</h1>
+      <div style={{backgroundColor: '#FFCDDD'}}>
+          <Switch>
+            <Route path="/" component={HomePage} exact/>
+            <Route path="/login" component={LoginPage} />
+            <Route path="/register" component={RegisPage} />
+            <Route path="/labinfo" component={LabPage} />
+          </Switch>
       </div>
-    );
+    ) 
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    role: state.userReducer.role
+  }
+}
+
+export default connect(mapStateToProps, { keepLogin })(App);
