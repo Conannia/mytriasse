@@ -1,0 +1,20 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "username": "admin",
+        "password": "admin",
+        "email": "admin@gmail.com",
+        "role": "admin",
+        "cart": []
+      },
+      {
+        "id": 2,
+        "username": "ken sanders",
+        "password": "ken123!",
+        "email": "kensanders@gmail.com",
+        "role": "user",
+        "cart": []
+      }
+    ]
+  }

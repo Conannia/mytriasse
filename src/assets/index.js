@@ -1,0 +1,1 @@
+export const LOGO = require('./img-brand-logo@2x.png')
